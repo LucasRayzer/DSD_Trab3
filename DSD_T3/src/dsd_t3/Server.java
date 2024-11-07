@@ -22,14 +22,11 @@ public class Server {
 
                     System.out.println("Cliente conectado: " + clientSocket.getInetAddress());
 
-                    // Tempo de envio da mensagem (h1)
                     long h1 = System.currentTimeMillis();
 
-                    // Lendo mensagem do cliente
                     String msg = input.readUTF();
 
                     if (msg.equals("Send me the time")) {
-                        // Cria objeto com o horário atual
                         Time time = new Time(h1, new Date());
                         output.writeObject(time);
                         output.flush();
