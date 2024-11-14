@@ -27,21 +27,17 @@ public class Client extends Thread {
     public void run() {
         while (true) {
             try {
-                // Marca o tempo de início da solicitação
                 long t0 = System.currentTimeMillis();
                 
-                // Estabelece a conexão com o servidor
                 Socket socket = new Socket(this.address, this.port);                            
                 socket.setReuseAddress(true);            
                 
                 ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
-                // Envia a mensagem solicitando o tempo
                 output.writeUTF("Me envie o tempo");
                 output.flush();
 
-                // Recebe o tempo do servidor
                 ServerTime time = (ServerTime) input.readObject();
                 System.out.println("Hora recebida pelo servidor: " + time.getUtc());
 
@@ -67,13 +63,11 @@ public class Client extends Thread {
                 date = c.getTime();
                 System.out.println("Horário atualizado: " + date);
 
-                // Fecha a conexão com o servidor
                 output.close();
                 input.close();
                 socket.close();
                 System.out.println("Conexão com o servidor encerrada.");
 
-                // Aguarda antes de fazer uma nova solicitação
                 sleep(sleepMillis);
 
             } catch (ConnectException ex) {
