@@ -1,7 +1,5 @@
 package dsd_t3.teste;
 
-import dsd_t3.teste.Client;
-import dsd_t3.teste.Server;
 
 public class MainServer {
     public static void main(String[] args) {
