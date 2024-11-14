@@ -47,7 +47,7 @@ public class Client extends Thread {
                 int p = (int)(t1 - t0 - time.getH()) / 2;
 
                 // Ajusta o tempo dependendo da comparação entre o UTC do servidor e o horário do cliente
-                if (time.getUtc().before(date)) {
+                if (time.getUtc().before(date) || time.getUtc().after(date) ) {
                     double aux = p / 2;
                     p = (int) Math.ceil(aux);
                     if (p < 0) {
