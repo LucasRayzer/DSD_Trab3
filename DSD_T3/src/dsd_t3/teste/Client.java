@@ -38,13 +38,12 @@ public class Client extends Thread {
                 ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
                 // Envia a mensagem solicitando o tempo
-                System.out.println("Sending request to server: 'Send me the time'");
-                output.writeUTF("Send me the time");
+                output.writeUTF("Me envie o tempo");
                 output.flush();
 
                 // Recebe o tempo do servidor
                 ServerTime time = (ServerTime) input.readObject();
-                System.out.println("Received time from server: " + time.getUtc());
+                System.out.println("Hora recebida pelo servidor: " + time.getUtc());
 
                 // Calcula a diferença de tempo
                 Calendar c = Calendar.getInstance();                                  
@@ -66,19 +65,19 @@ public class Client extends Thread {
                 // Atualiza o horário local
                 c.add(Calendar.MILLISECOND, p);                
                 date = c.getTime();
-                System.out.println("Updated client time: " + date);
+                System.out.println("Horário atualizado: " + date);
 
                 // Fecha a conexão com o servidor
                 output.close();
                 input.close();
                 socket.close();
-                System.out.println("Connection closed with server.");
+                System.out.println("Conexão com o servidor encerrada.");
 
                 // Aguarda antes de fazer uma nova solicitação
                 sleep(sleepMillis);
 
             } catch (ConnectException ex) {
-                System.out.println("Connection failed, retrying...");
+                System.out.println("A conexão falhou, tente novamente...");
                 continue;
             } catch (IOException | ClassNotFoundException | InterruptedException e) {
                 e.printStackTrace();

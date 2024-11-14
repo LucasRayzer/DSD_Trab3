@@ -9,10 +9,7 @@ import java.net.Socket;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- *
- * @author Ivens
- */
+
 public class Client extends Thread{
 
     private String adress;

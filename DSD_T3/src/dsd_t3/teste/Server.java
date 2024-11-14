@@ -11,18 +11,14 @@ public class Server {
 
     public void execute() {
         try {
-            // Criação do ServerSocket que escuta na porta 80
             ServerSocket serverSocket = new ServerSocket(80);  
-            System.out.println("Server is running on port 80...");
             serverSocket.setReuseAddress(true);
 
             while (true) {
-                // Aguardando a conexão do cliente
-                System.out.println("Waiting for a connection...");
+                System.out.println("Aguardando conexões...");
                 Socket socket = serverSocket.accept();
-                System.out.println("Client connected: " + socket.getInetAddress());
+                System.out.println("Cliente conectado: " + socket.getInetAddress());
 
-                // Criando e iniciando uma nova thread para tratar a conexão
                 SocketThread thread = new SocketThread(socket);
                 thread.start();
             }

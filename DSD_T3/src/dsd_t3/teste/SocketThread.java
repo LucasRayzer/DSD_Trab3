@@ -20,32 +20,25 @@ public class SocketThread extends Thread {
     @Override
     public void run() {
         try {
-            // Criação dos streams de entrada e saída
             ObjectOutputStream output = new ObjectOutputStream(connection.getOutputStream());
             ObjectInputStream input = new ObjectInputStream(connection.getInputStream());
             
-            // Captura do tempo inicial do servidor
             long h1 = System.currentTimeMillis();
 
-            // Lê a mensagem do cliente
             String msg = input.readUTF();
-            System.out.println("Received message from client: " + msg);
 
-            if ("Send me the time".equals(msg)) {
-                // Criação de um objeto ServerTime com o tempo atual
+            if ("Me envie o tempo".equals(msg)) {
                 ServerTime time = new ServerTime(h1, new Date());
                 
-                // Envio do tempo para o cliente
                 output.writeObject(time);
                 output.flush();
-                System.out.println("Sent time to client: " + time.getUtc());
+                System.out.println("Hora enviada para o cliente: " + time.getUtc());
             }
 
-            // Fechamento das conexões após a resposta
             output.close();
             input.close();
             connection.close();
-            System.out.println("Connection with client " + clientPort + " closed.");
+            System.out.println("Conexão com o cliente " + clientPort + " encerrada.");
         } catch (IOException e) {
             e.printStackTrace();
             try {
