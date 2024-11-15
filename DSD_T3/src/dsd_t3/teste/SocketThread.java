@@ -38,7 +38,6 @@ public class SocketThread extends Thread {
             output.close();
             input.close();
             connection.close();
-            System.out.println("Conexão com o cliente " + clientPort + " encerrada.");
         } catch (IOException e) {
             e.printStackTrace();
             try {

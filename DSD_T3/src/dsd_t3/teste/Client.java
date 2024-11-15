@@ -68,7 +68,6 @@ public class Client extends Thread {
                 output.close();
                 input.close();
                 socket.close();
-               System.out.println("Conexão com o servidor encerrada.");
 
                 sleep(sleepMillis);
 
