@@ -16,9 +16,9 @@ public class Server {
             serverSocket.setReuseAddress(true);
 
             while (true) {
-                MensagemTemporaria.exibir("Aguardando conexões...", 3000);
+                System.out.println("Aguardando conexões...");
                 Socket socket = serverSocket.accept();
-                MensagemTemporaria.exibir("Cliente conectado: " + socket.getInetAddress(), 3000);
+                System.out.println("Cliente conectado: " + socket.getInetAddress());
                 SocketThread thread = new SocketThread(socket);
                 thread.start();
             }
