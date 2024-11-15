@@ -8,6 +8,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Client extends Thread {
     
@@ -25,7 +26,9 @@ public class Client extends Thread {
 
     @Override
     public void run() {
-        while (true) {
+        Scanner s = new Scanner(System.in);
+        boolean continuar = true;
+        while (continuar) {
             try {
                 long t0 = System.currentTimeMillis();
                 
@@ -35,6 +38,12 @@ public class Client extends Thread {
                 ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
+                System.out.println("Deseja encerrar? S/N");
+                String resposta = s.next();
+                
+                if (resposta.equalsIgnoreCase("S")){
+                    continuar = false;
+                }
                 output.writeUTF("Me envie o tempo");
                 output.flush();
 
