@@ -32,13 +32,13 @@ public class SocketThread extends Thread {
                 
                 output.writeObject(time);
                 output.flush();
-                System.out.println("Hora enviada para o cliente: " + time.getUtc());
+                MensagemTemporaria.exibir("Hora enviada para o cliente: " + time.getUtc(), 3000);
             }
 
             output.close();
             input.close();
             connection.close();
-            System.out.println("Conexão com o cliente " + clientPort + " encerrada.");
+            MensagemTemporaria.exibir("Conexão com o cliente " + clientPort + " encerrada.", 3000);
         } catch (IOException e) {
             e.printStackTrace();
             try {

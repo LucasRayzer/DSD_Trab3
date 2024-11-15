@@ -4,6 +4,7 @@ import dsd_t3.teste.ServerTime;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import javax.swing.JOptionPane;
 
 public class Server {
     
@@ -15,10 +16,9 @@ public class Server {
             serverSocket.setReuseAddress(true);
 
             while (true) {
-                System.out.println("Aguardando conexões...");
+                MensagemTemporaria.exibir("Aguardando conexões...", 3000);
                 Socket socket = serverSocket.accept();
-                System.out.println("Cliente conectado: " + socket.getInetAddress());
-
+                MensagemTemporaria.exibir("Cliente conectado: " + socket.getInetAddress(), 3000);
                 SocketThread thread = new SocketThread(socket);
                 thread.start();
             }

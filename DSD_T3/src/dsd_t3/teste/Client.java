@@ -39,7 +39,7 @@ public class Client extends Thread {
                 output.flush();
 
                 ServerTime time = (ServerTime) input.readObject();
-                System.out.println("Hora recebida pelo servidor: " + time.getUtc());
+                MensagemTemporaria.exibir("Hora recebida pelo servidor: " + time.getUtc(), 3000);
 
                 // Calcula a diferença de tempo
                 Calendar c = Calendar.getInstance();                                  
@@ -61,17 +61,18 @@ public class Client extends Thread {
                 // Atualiza o horário local
                 c.add(Calendar.MILLISECOND, p);                
                 date = c.getTime();
-                System.out.println("Horário atualizado: " + date);
+                MensagemTemporaria.exibir("Horário atualizado: " + date, 3000);
+
 
                 output.close();
                 input.close();
                 socket.close();
-                System.out.println("Conexão com o servidor encerrada.");
+                MensagemTemporaria.exibir("Conexão com o servidor encerrada.", 3000);
 
                 sleep(sleepMillis);
 
             } catch (ConnectException ex) {
-                System.out.println("A conexão falhou, tente novamente...");
+                MensagemTemporaria.exibir("A conexão falhou, tente novamente...", 3000);
                 continue;
             } catch (IOException | ClassNotFoundException | InterruptedException e) {
                 e.printStackTrace();
