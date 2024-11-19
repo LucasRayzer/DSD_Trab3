@@ -27,8 +27,7 @@ public class Client extends Thread {
     @Override
     public void run() {
         Scanner s = new Scanner(System.in);
-        boolean continuar = true;
-        while (continuar) {
+        while (true) {
             try {
                 long t0 = System.currentTimeMillis();
                 
@@ -38,12 +37,6 @@ public class Client extends Thread {
                 ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
-                System.out.println("Deseja encerrar? S/N");
-                String resposta = s.next();
-                
-                if (resposta.equalsIgnoreCase("S")){
-                    continuar = false;
-                }
                 output.writeUTF("Me envie o tempo");
                 output.flush();
 
@@ -55,11 +48,17 @@ public class Client extends Thread {
                 long t1 = System.currentTimeMillis();
                 int p = (int)(t1 - t0 - time.getH()) / 2;
 
-                // Ajusta o tempo dependendo da comparação entre o UTC do servidor e o horário do cliente
                  if (time.getUtc().before(date)) {
                     long t2 = time.getH();  
                     long t3 = t2;           
                     long theta = ((t1 - t0) + (t3 - t2)) / 2;
+                    
+                    Calendar horarioCorreto = Calendar.getInstance();
+                    horarioCorreto.setTime(date);
+                    horarioCorreto.add(Calendar.MILLISECOND, -(int) theta);
+                    Date infosCorretas = horarioCorreto.getTime();
+
+                    System.out.println("Horário que deveria ser: " + infosCorretas);
                     
                     c.setTime(date);
                     c.add(Calendar.MILLISECOND, - (int) theta);
