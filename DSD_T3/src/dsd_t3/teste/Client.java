@@ -53,12 +53,7 @@ public class Client extends Thread {
                     long t3 = t2;           
                     long theta = ((t1 - t0) + (t3 - t2)) / 2;
                     
-                    Calendar horarioCorreto = Calendar.getInstance();
-                    horarioCorreto.setTime(date);
-                    horarioCorreto.add(Calendar.MILLISECOND, -(int) theta);
-                    Date infosCorretas = horarioCorreto.getTime();
-
-                    System.out.println("Horário que deveria ser: " + infosCorretas);
+                    System.out.print("Horário correto " + time.getUtc() + " / ");
                     
                     c.setTime(date);
                     c.add(Calendar.MILLISECOND, - (int) theta);
