@@ -46,7 +46,7 @@ public class Client extends Thread {
                 // Calcula a diferença de tempo
                 Calendar c = Calendar.getInstance();                                  
                 long t1 = System.currentTimeMillis();
-                int p = (int)(t1 - t0 - time.getH()) / 2;
+                int p = (int)(t1 - t0 + time.getH()) / 2;
 
                  if (time.getUtc().before(date)) {
                     long t2 = time.getH();  
@@ -63,7 +63,7 @@ public class Client extends Thread {
                 }
 
                 // Atualiza o horário local
-                c.add(Calendar.MILLISECOND, p);                
+                c.add(Calendar.MILLISECOND,p);                
                 date = c.getTime();
                 System.out.println("Horário atualizado: " + date);
 
