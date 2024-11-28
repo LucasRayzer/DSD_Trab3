@@ -1,7 +1,6 @@
 
-package dsd_t3.teste;
+package dsd_t3;
 
-import dsd_t3.teste.Client;
 import javax.swing.JOptionPane;
 
 public class MainClient {

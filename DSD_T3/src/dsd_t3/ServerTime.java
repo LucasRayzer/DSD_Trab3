@@ -1,4 +1,4 @@
-package dsd_t3.teste;
+package dsd_t3;
 
 import java.io.Serializable;
 import java.util.Date;

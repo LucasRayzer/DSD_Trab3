@@ -1,4 +1,4 @@
-package dsd_t3.teste;
+package dsd_t3;
 
 
 public class MainServer {
